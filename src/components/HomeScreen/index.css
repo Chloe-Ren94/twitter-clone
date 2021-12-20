@@ -1,0 +1,21 @@
+.left {
+    width: calc(100% - 600px);
+    height: 800px;
+}
+.right {
+    width: 600px;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+.signup-button {
+    width: 250px;
+}
+.signin-button {
+    width: 250px;
+    background-color: black;
+    border-color: gray;
+}
+
+
