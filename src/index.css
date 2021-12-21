@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.text-bold {
+  font-weight: bold;
+}
+.btn-full-width {
+  width: 100%;
+}

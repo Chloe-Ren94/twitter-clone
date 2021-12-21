@@ -1,0 +1,31 @@
+.profile-pic-alone {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+.header-pic {
+    width: 545px;
+    height: 150px;
+}
+.profile-pic {
+    position: relative;
+    top: -62px;
+    width: 125px;
+    height: 125px;
+    border-radius: 50%;
+    border-width: 4px;
+    border-style: solid;
+    border-color: black;
+}
+.relative-up {
+    position: relative;
+    top: -62px;
+}
+.btn-position {
+    position: relative;
+    top: 62px;
+}
+.setup-btn-position {
+    position: relative;
+    top: 105px;
+}
