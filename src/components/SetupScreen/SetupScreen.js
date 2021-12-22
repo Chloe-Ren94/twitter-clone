@@ -1,7 +1,10 @@
 import React, {useState} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Modal from 'react-modal';
 import './index.css';
+import {useNavigate} from "react-router-dom";
+import {updateHeader, updateProfile, updateUser} from "../../services/user-service";
+
 
 const SetupScreen = () => {
     const user = useSelector(state => state.user);
@@ -14,6 +17,8 @@ const SetupScreen = () => {
     const [headerUploaded, setHeaderUploaded] = useState(false);
     const [bio, setBio] = useState('');
     const [username, setUsername] = useState('');
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const processPic = (e) => {
         const imageFile = e.target.files[0];
@@ -31,6 +36,35 @@ const SetupScreen = () => {
         setHeaderUploaded(true);
     }
 
+    const updateProfilePic = () => {
+        const data = new FormData();
+        data.append("userId", user._id);
+        data.append("profilePic", pic);
+        updateProfile(dispatch, data);
+    }
+
+    const updateHeaderPic = () => {
+        const data = new FormData();
+        data.append("userId", user._id);
+        data.append("headerPic", header);
+        updateHeader(dispatch, data);
+    }
+
+    const setupHandler = () => {
+        const updatedUser = {
+            ...user,
+            username,
+            bio
+        }
+        updateUser(dispatch, updatedUser);
+        if(pic) {
+            updateProfilePic();
+        }
+        if(header) {
+            updateHeaderPic();
+        }
+        navigate('/home');
+    }
 
     return(
         <div>
@@ -171,7 +205,7 @@ const SetupScreen = () => {
                     !username &&
                     <button
                         className="btn btn-light bg-black border-0 mt-5 rounded-pill btn-full-width setup-btn-position"
-                        onClick={() => setActiveModal('header')}>
+                        onClick={() => navigate('/home')}>
                         <span className="text-bold border-bottom">Skip for now</span>
                     </button>
                 }
@@ -179,7 +213,7 @@ const SetupScreen = () => {
                     username &&
                     <button
                         className="btn mt-5 rounded-pill bg-white text-black text-bold btn-full-width setup-btn-position"
-                        onClick={() => setActiveModal('header')}>
+                        onClick={setupHandler}>
                         <span className="text-bold">Set up</span>
                     </button>
                 }

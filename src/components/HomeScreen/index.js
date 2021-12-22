@@ -4,18 +4,7 @@ import {useNavigate} from "react-router-dom";
 import {API_URL} from "../../consts";
 
 const HomeScreen = () => {
-    const [user, setUser] = useState({});
-    const navigate = useNavigate();
-    const getProfile = () => {
-        fetch(`${API_URL}/user`, {
-            method: 'POST',
-            credentials: 'include'
-        }).then(res => res.json())
-            .then(user => {
-                setUser(user);
-            }).catch(e => navigate('/login'));
-    }
-    useEffect(getProfile, [navigate]);
+    const user = useSelector(state => state.user);
 
     return(
         <div>
